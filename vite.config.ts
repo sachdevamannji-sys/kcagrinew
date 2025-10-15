@@ -1,14 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { fileURLToPath } from "url"; // <-- import this
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { fileURLToPath } from "url";
 
-// Convert import.meta.url to __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
+  root: path.resolve(__dirname, "client"),
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -24,11 +24,6 @@ export default defineConfig({
         ]
       : []),
   ],
-
-  // ✅ Root folder for Vite
-  root: path.resolve(__dirname, "client"),
-
-  // ✅ Aliases for JS/TS imports
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client/src"),
@@ -36,8 +31,6 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "attached_assets"),
     },
   },
-
-  // ✅ Build output folder and options
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
@@ -45,7 +38,6 @@ export default defineConfig({
       input: path.resolve(__dirname, "client/index.html"),
     },
   },
-
   server: {
     fs: {
       strict: true,
