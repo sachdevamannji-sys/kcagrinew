@@ -1,7 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { fileURLToPath } from "url"; // <-- import this
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+
+// Convert import.meta.url to __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [
@@ -37,7 +42,6 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
     rollupOptions: {
-      // explicitly define HTML entry for build
       input: path.resolve(__dirname, "client/index.html"),
     },
   },
