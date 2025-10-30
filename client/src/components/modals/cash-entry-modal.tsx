@@ -136,7 +136,7 @@ export default function CashEntryModal({ isOpen, onClose, entryType, parties = [
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             {editEntry ? 'Edit Cash Entry' : (entryType === 'cash_in' ? 'Cash In Entry' : 'Cash Out Entry')}

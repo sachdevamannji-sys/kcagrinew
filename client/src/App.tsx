@@ -37,12 +37,12 @@ function Router() {
   if (!user) {
     return <LoginPage />;
   }
-
+  //  <Header /> 
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden ml-64">
-        <Header />
+     
         <main className="flex-1 overflow-y-auto bg-gray-50">
           <Switch>
             <Route path="/" component={DashboardPage} />
