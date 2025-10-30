@@ -443,6 +443,7 @@ export class DatabaseStorage implements IStorage {
         rate: transactions.rate,
         amount: transactions.amount,
         paymentMode: transactions.paymentMode,
+        paymentStatus: transactions.paymentStatus,
         notes: transactions.notes,
         category: transactions.category,
         isActive: transactions.isActive,

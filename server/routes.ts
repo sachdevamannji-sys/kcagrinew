@@ -188,7 +188,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to create city" });
     }
   });
-
+  app.put("/api/cities/:id", requireAuth, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const validatedData = insertCitySchema.partial().parse(req.body);
+      const state = await storage.updateCity(id, validatedData);
+      res.json(state);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Update state error:", error);
+      res.status(500).json({ message: "Failed to update state" });
+    }
+  });
   // Parties routes
   app.get("/api/parties", requireAuth, async (req, res) => {
     try {
